@@ -1,0 +1,21 @@
+{
+  "name": "agibank-web-playwright",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Testes E2E do Blog do Agi com Playwright",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "show-report": "playwright show-report",
+    "install:browsers": "playwright install --with-deps",
+    "codegen": "playwright codegen https://blog.agibank.com.br/"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.2",
+    "@types/node": "^20.14.10",
+    "typescript": "^5.4.0"
+  }
+}

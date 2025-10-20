@@ -1,0 +1,25 @@
+# Arquivos de sistema e IDEs
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependências
+node_modules/
+
+# Arquivos de build
+dist/
+build/
+
+# Ambientes
+.env
+.env.local
+.env.*.local

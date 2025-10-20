@@ -1,0 +1,63 @@
+name: API - Playwright Tests
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'API/**'
+      - '.github/workflows/api-tests.yml'
+  pull_request:
+    branches:
+      - main
+      - master
+    paths:
+      - 'API/**'
+      - '.github/workflows/api-tests.yml'
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: API
+
+jobs:
+  test:
+    name: Testes de API - Dog CEO
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: API/package-lock.json
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Executar testes de API
+        run: npm test
+
+      - name: Upload do relatório do Playwright
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-playwright-report
+          path: API/playwright-report/
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Upload do relatório JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-test-results
+          path: API/test-results/
+          retention-days: 30
+          if-no-files-found: ignore
