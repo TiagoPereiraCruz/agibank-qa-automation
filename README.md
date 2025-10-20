@@ -84,9 +84,8 @@ Os relatórios ficam disponíveis como artefatos por 30 dias.
 
 ## 👨‍💻 Autor
 
-Tiago Pereira da Cruz
-Senior QA
-Desenvolvido para o processo seletivo QA da Agibank.
+- Tiago Pereira da Cruz - Senior QA
+- Desenvolvido para o processo seletivo QA da Agibank.
 
 ## 📝 Notas
 
