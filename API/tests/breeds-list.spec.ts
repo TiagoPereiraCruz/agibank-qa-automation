@@ -1,5 +1,5 @@
 import { test, expect, request } from '@playwright/test';
-import { expectSuccessResponse, expectValidBreedsObject } from '../src/helpers/apiHelpers';
+import { expectSuccessResponse, expectValidBreedsObject, expectBreedsListSchema } from '../src/helpers/apiHelpers';
 
 /**
  * Testes do endpoint GET /breeds/list/all
@@ -13,16 +13,16 @@ test.describe('Dog CEO API - Lista de Raças', () => {
     const response = await request.get('/api/breeds/list/all');
     const body = await expectSuccessResponse(response);
     
-    // Valida que message contém o objeto de raças
-    expect(body.message).toBeDefined();
-    expect(typeof body.message).toBe('object');
+    // Valida schema completo da resposta
+    expectBreedsListSchema(body);
   });
 
   test('Deve retornar raças conhecidas no formato correto', async ({ request }) => {
     const response = await request.get('/api/breeds/list/all');
     const body = await response.json();
     
-    expectValidBreedsObject(body.message);
+    // Valida schema completo da resposta
+    expectBreedsListSchema(body);
     
     // Valida que raças comuns estão presentes
     expect(body.message).toHaveProperty('labrador');

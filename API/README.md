@@ -134,7 +134,7 @@ Os testes rodam automaticamente no GitHub Actions quando há alterações na pas
 ## 🔍 Troubleshooting
 
 ### Testes falhando por timeout
-A Dog CEO API é gratuita e pode estar lenta. O timeout está configurado para 30s, mas você pode aumentar no `playwright.config.ts`:
+A Dog CEO API é gratuita e pode estar lenta. O timeout está configurado para 30s, mas é possível aumentar no `playwright.config.ts`:
 ```typescript
 timeout: 60_000, // 60 segundos
 ```

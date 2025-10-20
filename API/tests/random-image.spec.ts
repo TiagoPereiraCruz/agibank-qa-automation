@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { expectSuccessResponse, expectValidImageUrl } from '../src/helpers/apiHelpers';
+import { expectSuccessResponse, expectValidImageUrl, expectRandomImageSchema, expectRandomImagesSchema } from '../src/helpers/apiHelpers';
 
 /**
  * Testes do endpoint GET /breeds/image/random
@@ -13,9 +13,8 @@ test.describe('Dog CEO API - Imagem Aleatória', () => {
     const response = await request.get('/api/breeds/image/random');
     const body = await expectSuccessResponse(response);
     
-    // Message deve ser uma string (URL da imagem)
-    expect(typeof body.message).toBe('string');
-    expectValidImageUrl(body.message);
+    // Valida schema completo da resposta
+    expectRandomImageSchema(body);
   });
 
   test('Deve retornar URLs diferentes em requisições consecutivas', async ({ request }) => {
@@ -39,13 +38,8 @@ test.describe('Dog CEO API - Imagem Aleatória', () => {
     const response = await request.get(`/api/breeds/image/random/${count}`);
     const body = await expectSuccessResponse(response);
     
-    // Message deve ser um array com o número solicitado de URLs
-    expect(Array.isArray(body.message)).toBe(true);
-    expect(body.message.length).toBe(count);
-    
-    body.message.forEach((url: string) => {
-      expectValidImageUrl(url);
-    });
+    // Valida schema completo da resposta com múltiplas imagens
+    expectRandomImagesSchema(body, count);
   });
 
   test('A URL retornada deve estar acessível', async ({ request }) => {

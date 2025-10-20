@@ -47,3 +47,52 @@ export function expectValidBreedsObject(breeds: Record<string, string[]>) {
     expect(Array.isArray(subBreeds)).toBe(true);
   });
 }
+
+/**
+ * Valida schema completo da resposta /breeds/list/all
+ */
+export function expectBreedsListSchema(body: any) {
+  expect(body).toMatchObject({
+    status: expect.any(String),
+    message: expect.any(Object)
+  });
+  expect(body.status).toBe('success');
+  expectValidBreedsObject(body.message);
+}
+
+/**
+ * Valida schema completo da resposta /breed/{breed}/images
+ */
+export function expectBreedImagesSchema(body: any) {
+  expect(body).toMatchObject({
+    status: expect.any(String),
+    message: expect.any(Array)
+  });
+  expect(body.status).toBe('success');
+  expectValidImageUrls(body.message);
+}
+
+/**
+ * Valida schema completo da resposta /breeds/image/random
+ */
+export function expectRandomImageSchema(body: any) {
+  expect(body).toMatchObject({
+    status: expect.any(String),
+    message: expect.any(String)
+  });
+  expect(body.status).toBe('success');
+  expectValidImageUrl(body.message);
+}
+
+/**
+ * Valida schema completo da resposta /breeds/image/random com múltiplas imagens
+ */
+export function expectRandomImagesSchema(body: any, expectedCount: number) {
+  expect(body).toMatchObject({
+    status: expect.any(String),
+    message: expect.any(Array)
+  });
+  expect(body.status).toBe('success');
+  expect(body.message).toHaveLength(expectedCount);
+  expectValidImageUrls(body.message);
+}

@@ -60,7 +60,7 @@ O workflow está em `.github/workflows/web-tests.yml` na raiz do repositório.
 
 **Configuração:**
 - No CI, roda apenas Chromium (mais rápido). 
-- Localmente você pode testar com Firefox e WebKit descomentando no `playwright.config.ts`.
+- Localmente é possível testar com Firefox e WebKit descomentando no `playwright.config.ts`.
 
 **Para visualizar o relatório no CI:**
 1. Acesse a aba "Actions" do repositório

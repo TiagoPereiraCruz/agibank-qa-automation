@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { expectSuccessResponse, expectValidImageUrls } from '../src/helpers/apiHelpers';
+import { expectSuccessResponse, expectValidImageUrls, expectBreedImagesSchema } from '../src/helpers/apiHelpers';
 
 /**
  * Testes do endpoint GET /breed/{breed}/images
@@ -13,19 +13,16 @@ test.describe('Dog CEO API - Imagens por Raça', () => {
     const response = await request.get('/api/breed/beagle/images');
     const body = await expectSuccessResponse(response);
     
-    // Valida que message é um array de URLs
-    expect(Array.isArray(body.message)).toBe(true);
-    expect(body.message.length).toBeGreaterThan(0);
-    expectValidImageUrls(body.message);
+    // Valida schema completo da resposta
+    expectBreedImagesSchema(body);
   });
 
   test('Deve retornar imagens para sub-raça (bulldog/french)', async ({ request }) => {
     const response = await request.get('/api/breed/bulldog/french/images');
     const body = await expectSuccessResponse(response);
     
-    expect(Array.isArray(body.message)).toBe(true);
-    expect(body.message.length).toBeGreaterThan(0);
-    expectValidImageUrls(body.message);
+    // Valida schema completo da resposta
+    expectBreedImagesSchema(body);
     
     // URLs devem conter a raça e sub-raça no caminho
     body.message.forEach((url: string) => {

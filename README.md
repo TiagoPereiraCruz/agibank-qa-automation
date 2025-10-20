@@ -1,5 +1,8 @@
 # Teste Técnico QA - Agibank
 
+![WEB Tests](https://github.com/TiagoPereiraCruz/agibank-qa-automation/workflows/WEB%20-%20Playwright%20Tests/badge.svg)
+![API Tests](https://github.com/TiagoPereiraCruz/agibank-qa-automation/workflows/API%20-%20Playwright%20Tests/badge.svg)
+
 Este repositório contém a automação de testes Web e API para o processo seletivo da Agibank.
 
 ## 📁 Estrutura do Projeto
@@ -62,6 +65,14 @@ npm install
 npm test
 ```
 
+## 📊 Métricas
+
+| Projeto | Cenários | Tempo Médio | Taxa de Sucesso |
+|---------|----------|-------------|------------------|
+| WEB | 3 | ~5s | 100% ✅ |
+| API | 17 | ~4s | 100% ✅ |
+| **Total** | **20** | **~9s** | **100%** |
+
 ## 📊 CI/CD
 
 Os testes são executados automaticamente via **GitHub Actions** em:
@@ -73,6 +84,8 @@ Os relatórios ficam disponíveis como artefatos por 30 dias.
 
 ## 👨‍💻 Autor
 
+Tiago Pereira da Cruz
+Senior QA
 Desenvolvido para o processo seletivo QA da Agibank.
 
 ## 📝 Notas
